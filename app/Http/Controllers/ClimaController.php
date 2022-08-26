@@ -27,6 +27,57 @@ class ClimaController extends Controller
         return view("prevision")->with('datos', $datos);
     }
 
+    public function getMuyfrioAPI()
+    {
+        $datos = Clima::where('temperatura', '<=', '283')->get();
+
+        //dd($datos);
+        $response = [
+            'data' => $datos,
+            'message' => "Climas listados con exíto.",
+        ];
+
+        return response($response , 200);
+    }
+
+    public function getFrioAPI()
+    {
+        $datos = Clima::whereBetween('temperatura', ['283','298'])->get();
+
+        //dd($datos);
+        $response = [
+            'data' => $datos,
+            'message' => "Climas listados con exíto.",
+        ];
+
+        return response($response , 200);
+    }
+    public function getCalorAPI()
+    {
+        $datos = Clima::whereBetween('temperatura', ['298','310'])->get();
+
+        //dd($datos);
+        $response = [
+            'data' => $datos,
+            'message' => "Climas listados con exíto.",
+        ];
+
+        return response($response , 200);
+    }
+
+    public function getMuchoCalorAPI()
+    {
+        $datos = Clima::where('temperatura', '>=', '310')->get();
+
+        //dd($datos);
+        $response = [
+            'data' => $datos,
+            'message' => "Climas listados con exíto.",
+        ];
+
+        return response($response , 200);
+    }
+
     public function getListado()
     {
         $usuarios = User::where('id', "!=", auth()->user()->id)->get();
