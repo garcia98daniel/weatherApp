@@ -14,6 +14,5 @@ class ClimaSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }
